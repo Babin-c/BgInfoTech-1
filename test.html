@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+
+  /* Base nav styles */
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navmenu li {
+    position: relative;
+    padding: 10px 15px;
+  }
+  
+  .navmenu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  
+  /* Dropdown container */
+  .dropdown ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 15px;
+    width: 650px; /* Slightly wider for icons */
+    z-index: 99;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  
+  /* Services dropdown specific styling */
+  #services-dropdown {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .service-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-left: 3px solid #4e54c8;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .service-card h4 {
+    margin-top: 0;
+    color: #4e54c8;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .service-card ul {
+    position: static;
+    opacity: 1;
+    transform: none;
+    box-shadow: none;
+    padding: 0;
+    width: auto;
+    display: block;
+    margin-top: 15px;
+  }
+  
+  .service-card li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .service-card li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  /* Icons for service categories */
+  .web-dev-icon:before {
+    content: "\f121"; /* Font Awesome code icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4e54c8;
+  }
+  
+  .software-dev-icon:before {
+    content: "\f5fc"; /* Font Awesome laptop-code icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4e54c8;
+  }
+  
+  .marketing-icon:before {
+    content: "\f0a1"; /* Font Awesome bullhorn icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4e54c8;
+  }
+  
+  .offers-icon:before {
+    content: "\f02b"; /* Font Awesome tag icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #4e54c8;
+  }
+  
+  /* Icons for service items */
+  .service-card li[data-icon="design"]:before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234e54c8"><path d="M20 3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H4V5h16v14z"/><path d="M8 9h8v2H8zm0 4h8v2H8z"/></svg>');
+  }
+  
+  .service-card li[data-icon="motion"]:before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234e54c8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path d="M12 8l-4 4 4 4 4-4z"/></svg>');
+  }
+  
+  .service-card li[data-icon="cloud"]:before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234e54c8"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>');
+  }
+  
+  .service-card li[data-icon="seo"]:before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org');
+  }
+</style>
+
+<nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#features">Features</a></li>
+    <li class="dropdown"><a href="#services"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+      <ul id="services-dropdown">
+        <!-- Web Development Card -->
+        <div class="service-card">
+          <h4>Web Development</h4>
+          <ul>
+            <li>UI/UX Designing</li>
+            <li>Motion Graphics</li>
+            <li>Frontend Development</li>
+            <li>Backend Development</li>
+          </ul>
+        </div>
+        
+        <!-- Software Development Card -->
+        <div class="service-card">
+          <h4>Software Development</h4>
+          <ul>
+            <li>Graphic Design</li>
+            <li>Cloud Services</li>
+            <li>Enterprise Solutions</li>
+            <li>API Development</li>
+          </ul>
+        </div>
+        
+        <!-- Digital Marketing Card -->
+        <div class="service-card">
+          <h4>Digital Marketing</h4>
+          <ul>
+            <li>SEO Services</li>
+            <li>Social Media Marketing</li>
+            <li>Content Marketing</li>
+          </ul>
+        </div>
+        
+        <!-- Special Offers Card -->
+        <div class="service-card">
+          <h4>Special Offers</h4>
+          <ul>
+            <li>MVP Development</li>
+            <li>Free Consultation</li>
+            <li>Custom Proposals</li>
+          </ul>
+        </div>
+      </ul>
+    </li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+      <ul>
+        <li><a href="#">Dropdown 1</a></li>
+        <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul>
+            <li><a href="#">Deep Dropdown 1</a></li>
+            <li><a href="#">Deep Dropdown 2</a></li>
+            <li><a href="#">Deep Dropdown 3</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Dropdown 2</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+
+</html>
